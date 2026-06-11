@@ -102,7 +102,7 @@ This project is intended to demonstrate and improve skills in:
 
 ### Phase 1 - Basic Monitoring
 
-- [ ] CPU usage
+- [x] CPU usage
 - [ ] Memory usage
 - [ ] Disk usage
 - [ ] Uptime reporting
