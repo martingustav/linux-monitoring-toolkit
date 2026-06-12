@@ -32,6 +32,17 @@ get_cpu_usage() {
     echo "${cpu_usage}"
 }
 
+# Calculates current memory usage from /proc/meminfo
+get_memory_usage() {
+    available_memory=$(awk '/MemAvailable/ { print $2 }' /proc/meminfo)
+    total_memory=$(awk '/MemTotal/ { print $2 }' /proc/meminfo)
+
+    mem_usage=$(awk -v available="$available_memory" -v total="$total_memory" \
+		    'BEGIN { printf "%.1f", ((total - available) / total) * 100 }')
+
+    echo "${mem_usage}"
+}
+
 echo -e "=== System Health Report ===\n"
 
 # Output machine's hostname
@@ -42,7 +53,7 @@ echo "Date: $(date +%F\ %T)"
 
 # Output system usage
 echo "CPU Usage: $(get_cpu_usage)%"
-# get_memory_usage()
+echo "Memory Usage: $(get_memory_usage)%"
 # get_disk_usage()
 # get_uptime()
 # get_top_memory_process()
