@@ -62,7 +62,7 @@ This project is intended to demonstrate and improve skills in:
 - [x] CPU usage
 - [x] Memory usage
 - [x] Disk usage
-- [ ] Uptime reporting
+- [x] Uptime reporting
 
 ### Phase 2 - Service Monitoring
 

@@ -49,6 +49,39 @@ get_disk_usage() {
 
     echo "$disk_usage"
 }
+
+# Calculates current system uptime from /proc/uptime
+get_uptime() {
+    # Get total seconds of uptime
+    uptime_seconds=$(awk '{printf "%.0f\n", $1}' /proc/uptime)
+
+    # Calculate uptime in days
+    uptime_days=$(( uptime_seconds / 86400 ))
+
+    # Get remaining seconds after calculating amount of days
+    remaining_seconds_after_days=$(( uptime_seconds % 86400 ))
+
+    # Calculate remaining uptime in hours
+    uptime_hours=$(( remaining_seconds_after_days / 3600 ))
+
+    # Get remaining seconds after calculating amount of hours
+    remaining_seconds_after_hours=$(( remaining_seconds_after_days % 3600 ))
+
+    # Calculate remaining uptime in minutes
+    uptime_minutes=$(( remaining_seconds_after_hours / 60 ))
+
+    if [[ $uptime_hours -eq 0 && $uptime_minutes -eq 0 ]]; then
+	echo "$uptime_seconds seconds"
+    elif [[ $uptime_days -eq 0 && $uptime_hours -eq 0 ]]; then
+	echo "$uptime_minutes minutes"
+    elif [ $uptime_days -eq 0 ]; then
+	echo "$uptime_hours hours $uptime_minutes minutes"
+    else
+	echo "$uptime_days days $uptime_hours hours $uptime_minutes minutes"
+    fi
+}
+
+# ===== System statistics printing starts here =====
 echo -e "=== System Health Report ===\n"
 
 # Output machine's hostname
@@ -60,6 +93,6 @@ echo -e "Date: $(date +%F\ %T)\n"
 # Output system usage
 echo "CPU Usage: $(get_cpu_usage)%"
 echo "Memory Usage: $(get_memory_usage)%"
-# get_uptime()
 echo "Disk usage: $(get_disk_usage)%"
+echo "Uptime: $(get_uptime)"
 # get_top_memory_process()
