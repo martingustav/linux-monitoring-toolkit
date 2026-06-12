@@ -63,6 +63,7 @@ This project is intended to demonstrate and improve skills in:
 - [x] Memory usage
 - [x] Disk usage
 - [x] Uptime reporting
+- [ ] Top memory process
 
 ### Phase 2 - Service Monitoring
 
