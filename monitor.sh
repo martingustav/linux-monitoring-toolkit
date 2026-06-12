@@ -43,6 +43,12 @@ get_memory_usage() {
     echo "${mem_usage}"
 }
 
+# Gets current disk usage using df
+get_disk_usage() {
+    disk_usage=$(df --output=pcent / | sed -n 2p | tr -d '% ')
+
+    echo "$disk_usage"
+}
 echo -e "=== System Health Report ===\n"
 
 # Output machine's hostname
@@ -54,6 +60,6 @@ echo -e "Date: $(date +%F\ %T)\n"
 # Output system usage
 echo "CPU Usage: $(get_cpu_usage)%"
 echo "Memory Usage: $(get_memory_usage)%"
-# get_disk_usage()
 # get_uptime()
+echo "Disk usage: $(get_disk_usage)%"
 # get_top_memory_process()
