@@ -26,10 +26,10 @@ get_cpu_usage() {
     idle_delta=$((idle_total2 - idle_total1))
 
     # Calculate the final CPU usage with one decimal place
-    usage=$(awk -v idle="$idle_delta" -v total="$total_delta" \
-		'BEGIN { printf "%.1f", (total - idle) * 100 / total }')
+    cpu_usage=$(awk -v idle="$idle_delta" -v total="$total_delta" \
+		    'BEGIN { printf "%.1f", (total - idle) * 100 / total }')
 
-    echo "${usage}"
+    echo "${cpu_usage}"
 }
 
 echo -e "=== System Health Report ===\n"
