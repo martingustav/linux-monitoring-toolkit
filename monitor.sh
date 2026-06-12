@@ -49,7 +49,7 @@ echo -e "=== System Health Report ===\n"
 echo "Hostname: $(hostname)"
 
 # Output date and time
-echo "Date: $(date +%F\ %T)"
+echo -e "Date: $(date +%F\ %T)\n"
 
 # Output system usage
 echo "CPU Usage: $(get_cpu_usage)%"
