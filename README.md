@@ -42,49 +42,6 @@ Disk Usage: 62%
 Uptime: 14 days
 ```
 
-## Requirements
-
-- Linux
-- Bash
-- Core GNU utilities
-
-Tested on:
-
-- Raspberry Pi OS
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/<username>/pi-monitor.git
-cd pi-monitor
-```
-
-Make the script executable:
-
-```bash
-chmod +x monitor.sh
-```
-
-Run:
-
-```bash
-./monitor.sh
-```
-
-## Project Structure
-
-```text
-pi-monitor/
-├── monitor.sh
-├── config.sh
-├── reports/
-├── docs/
-├── screenshots/
-└── README.md
-```
-
 ## Learning Objectives
 
 This project is intended to demonstrate and improve skills in:
