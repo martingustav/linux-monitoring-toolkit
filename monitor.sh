@@ -74,7 +74,7 @@ get_uptime() {
 	echo "$uptime_seconds seconds"
     elif [[ $uptime_days -eq 0 && $uptime_hours -eq 0 ]]; then
 	echo "$uptime_minutes minutes"
-    elif [ $uptime_days -eq 0 ]; then
+    elif [[ $uptime_days -eq 0 ]]; then
 	echo "$uptime_hours hours $uptime_minutes minutes"
     else
 	echo "$uptime_days days $uptime_hours hours $uptime_minutes minutes"
