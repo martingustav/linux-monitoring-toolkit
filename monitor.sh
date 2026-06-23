@@ -81,6 +81,13 @@ get_uptime() {
     fi
 }
 
+get_top_memory_process() {
+    # Get all processes' memory usage and command name with ps, sort by memory usage
+    # Then, get the process with most memory usage with sed
+    # Lastly, format the output with awk
+    ps -eo comm,pmem --sort=-pmem | sed -n 2p | awk '{print $1 " (" $2 "%)"}'
+}
+
 # ===== System statistics printing starts here =====
 echo "=== System Health Report ==="
 echo
@@ -97,4 +104,5 @@ echo "CPU Usage: $(get_cpu_usage)%"
 echo "Memory Usage: $(get_memory_usage)%"
 echo "Disk usage: $(get_disk_usage)%"
 echo "Uptime: $(get_uptime)"
-# get_top_memory_process()
+echo
+echo "Top memory process: $(get_top_memory_process)"
