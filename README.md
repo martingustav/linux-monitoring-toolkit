@@ -32,14 +32,15 @@ Planned:
 ```text
 === System Health Report ===
 
-Hostname: raspberrypi
-Date: 2026-06-11 14:00
+Hostname: DietPi
+Date: 2026-06-23 13:00:18
 
-CPU Usage: 12%
-Memory Usage: 48%
-Disk Usage: 62%
+CPU Usage: 0.3%
+Memory Usage: 11.8%
+Disk usage: 16%
+Uptime: 12 days 1 hours 45 minutes
 
-Uptime: 14 days
+Top memory process: syncthing (4.7%)
 ```
 
 ## Learning Objectives
