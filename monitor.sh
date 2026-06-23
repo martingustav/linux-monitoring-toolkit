@@ -82,13 +82,15 @@ get_uptime() {
 }
 
 # ===== System statistics printing starts here =====
-echo -e "=== System Health Report ===\n"
+echo "=== System Health Report ==="
+echo
 
 # Output machine's hostname
 echo "Hostname: $(hostname)"
 
 # Output date and time
-echo -e "Date: $(date +%F\ %T)\n"
+echo "Date: $(date +%F\ %T)"
+echo
 
 # Output system usage
 echo "CPU Usage: $(get_cpu_usage)%"
