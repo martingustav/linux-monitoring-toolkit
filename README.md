@@ -68,9 +68,9 @@ This project is intended to demonstrate and improve skills in:
 
 ### Phase 2 - Service Monitoring
 
-- [ ] Check service status
+- [x] Check service status
 - [ ] Monitor Syncthing
-- [ ] Track resource consumption
+- [x] Track resource consumption
 
 ### Phase 3 - Log Analysis
 
