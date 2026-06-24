@@ -88,18 +88,18 @@ get_top_memory_process() {
     ps -eo comm,pmem --sort=-pmem | sed -n 2p | awk '{print $1 " (" $2 "%)"}'
 }
 
-# ===== System statistics printing starts here =====
+# ===== Printing starts here =====
 echo "=== System Health Report ==="
 echo
 
-# Output machine's hostname
+# Print machine's hostname
 echo "Hostname: $(hostname)"
 
-# Output date and time
+# Print date and time
 echo "Date: $(date +%F\ %T)"
 echo
 
-# Output system usage
+# Print system usage
 echo "CPU Usage: $(get_cpu_usage)%"
 echo "Memory Usage: $(get_memory_usage)%"
 echo "Disk usage: $(get_disk_usage)%"
