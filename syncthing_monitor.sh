@@ -24,6 +24,11 @@ run_systemctl() {
     fi
 }
 
+# Get the Syncthing service's PID
+get_pid() {
+    run_systemctl show syncthing -P MainPID
+}
+
 # Get Syncthing's service status
 get_status() {
     run_systemctl is-active syncthing
@@ -32,11 +37,6 @@ get_status() {
 # Check whether the Syncthing service is enabled
 get_enabled() {
     run_systemctl is-enabled syncthing
-}
-
-# Get the Syncthing service's PID
-get_pid() {
-    run_systemctl show syncthing -P MainPID
 }
 
 # Get Syncthing's memory usage
