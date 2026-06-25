@@ -2,9 +2,9 @@
 
 # Get Syncthing's service scope (system or user)
 get_service_scope() {
-    if [[ $(systemctl show syncthing -P LoadState) == "loaded" ]]; then
+    if [[ $(systemctl show syncthing -P LoadState 2> /dev/null) == "loaded" ]]; then
 	echo "system"
-    elif [[ $(systemctl --user show syncthing -P LoadState) == "loaded" ]]; then
+    elif [[ $(systemctl --user show syncthing -P LoadState 2> /dev/null) == "loaded" ]]; then
 	echo "user"
     else
 	echo "none"
