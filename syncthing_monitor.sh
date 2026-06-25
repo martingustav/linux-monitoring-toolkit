@@ -58,7 +58,7 @@ get_memory() {
     fi
 }
 
-# Get Syncthing's cpu usage
+# Get Syncthing's CPU usage
 get_cpu() {
     if [[ "$PID" != "" && "$PID" -ne 0 ]]; then
 	ps -p "$PID" -o pcpu= | awk '{printf "%.1f\n", $1}'
