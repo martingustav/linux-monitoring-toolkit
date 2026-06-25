@@ -33,22 +33,38 @@ PID=$(get_pid)
 
 # Get Syncthing's service status
 get_status() {
-    run_systemctl is-active syncthing
+    if service_status=$(run_systemctl is-active syncthing); then
+	echo "$service_status"
+    else
+	echo "N/A"
+    fi
 }
 
 # Check whether the Syncthing service is enabled
 get_enabled() {
-    run_systemctl is-enabled syncthing
+    if service_enabled=$(run_systemctl is-enabled syncthing); then
+	echo "$service_enabled"
+    else
+	echo "N/A"
+    fi
 }
 
 # Get Syncthing's memory usage
 get_memory() {
-    ps -p $(get_pid) -o pmem= | awk '{printf "%.1f\n", $1}'
+    if [[ "$PID" != "" &&  "$PID" -ne 0 ]]; then
+	ps -p "$PID" -o pmem= | awk '{printf "%.1f\n", $1}'
+    else
+	echo "N/A"
+    fi
 }
 
 # Get Syncthing's cpu usage
 get_cpu() {
-    ps -p $(get_pid) -o pcpu= | awk '{printf "%.1f\n", $1}'
+    if [[ "$PID" != "" && "$PID" -ne 0 ]]; then
+	ps -p "$PID" -o pcpu= | awk '{printf "%.1f\n", $1}'
+    else
+	echo "N/A"
+    fi
 }
 
 # ===== Printing starts here =====
