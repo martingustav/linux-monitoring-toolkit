@@ -34,11 +34,12 @@ get_enabled() {
     run_systemctl is-enabled syncthing
 }
 
+# Get the Syncthing service's PID
 get_pid() {
     run_systemctl show syncthing -P MainPID
 }
 
-# Gets Syncthing's memory usage
+# Get Syncthing's memory usage
 get_memory() {
     ps -p $(get_pid) -o pmem= | awk '{printf "%.1f\n", $1}'
 }
