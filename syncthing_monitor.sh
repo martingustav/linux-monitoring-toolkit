@@ -29,6 +29,8 @@ get_pid() {
     run_systemctl show syncthing -P MainPID
 }
 
+PID=$(get_pid)
+
 # Get Syncthing's service status
 get_status() {
     run_systemctl is-active syncthing
