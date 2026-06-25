@@ -57,7 +57,7 @@ get_enabled() {
 # Get Syncthing's memory usage
 get_memory() {
     if [[ "$PID" != "" &&  "$PID" -ne 0 ]]; then
-	ps -p "$PID" -o pmem= | awk '{printf "%.1f\n", $1}'
+	ps -p "$PID" -o pmem= | awk '{printf "%.1f%%\n", $1}'
     else
 	echo "N/A"
     fi
@@ -66,7 +66,7 @@ get_memory() {
 # Get Syncthing's CPU usage
 get_cpu() {
     if [[ "$PID" != "" && "$PID" -ne 0 ]]; then
-	ps -p "$PID" -o pcpu= | awk '{printf "%.1f\n", $1}'
+	ps -p "$PID" -o pcpu= | awk '{printf "%.1f%%\n", $1}'
     else
 	echo "N/A"
     fi
@@ -78,6 +78,6 @@ echo
 echo "Service status: $(get_status)"
 echo "Service enabled: $(get_enabled)"
 echo "PID: $(get_pid)"
-echo "Memory: $(get_memory)%"
-echo "CPU: $(get_cpu)%"
 #echo "Sync folder size: $(get_folder_size)"
+echo "Memory: $(get_memory)"
+echo "CPU: $(get_cpu)"
