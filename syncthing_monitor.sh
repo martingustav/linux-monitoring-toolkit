@@ -1,7 +1,31 @@
 #!/bin/bash
 
+# Get Syncthing's service scope (system or user)
+get_service_scope() {
+    if [[ $(systemctl show syncthing -P LoadState) == "loaded" ]]; then
+	echo "system"
+    elif [[ $(systemctl --user show syncthing -P LoadState) == "loaded" ]]; then
+	echo "user"
+    else
+	echo "none"
+    fi
+}
+
+SERVICE_SCOPE=$(get_service_scope)
+
+# Helper function which runs systemctl with the correct service scope
+run_systemctl() {
+    if [[ $SERVICE_SCOPE == "system" ]]; then
+	systemctl "$@"
+    elif [[ $SERVICE_SCOPE == "user" ]]; then
+	systemctl --user "$@"
+    else
+	return 1 # Failure code
+    fi
+}
+
 get_pid() {
-    systemctl show syncthing -P MainPID
+    run_systemctl show syncthing -P MainPID
 }
 
 # Gets Syncthing's memory usage
