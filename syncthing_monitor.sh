@@ -24,6 +24,16 @@ run_systemctl() {
     fi
 }
 
+# Get Syncthing's service status
+get_status() {
+    run_systemctl is-active syncthing
+}
+
+# Check whether the Syncthing service is enabled
+get_enabled() {
+    run_systemctl is-enabled syncthing
+}
+
 get_pid() {
     run_systemctl show syncthing -P MainPID
 }
@@ -41,8 +51,8 @@ get_cpu() {
 # ===== Printing starts here =====
 echo "=== Syncthing Status ==="
 echo
-echo "Service status: $(systemctl is-active syncthing)"
-echo "Service enabled: $(systemctl is-enabled syncthing)"
+echo "Service status: $(get_status)"
+echo "Service enabled: $(get_enabled)"
 echo "PID: $(get_pid)"
 echo "Memory: $(get_memory)%"
 echo "CPU: $(get_cpu)%"
