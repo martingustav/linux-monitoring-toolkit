@@ -77,7 +77,7 @@ echo "=== Syncthing Status ==="
 echo
 echo "Service status: $(get_status)"
 echo "Service enabled: $(get_enabled)"
-echo "PID: $(get_pid)"
 #echo "Sync folder size: $(get_folder_size)"
+echo "PID: $(get_pid_display)"
 echo "Memory: $(get_memory)"
 echo "CPU: $(get_cpu)"
