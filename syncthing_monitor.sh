@@ -24,12 +24,17 @@ run_systemctl() {
     fi
 }
 
-# Get the Syncthing service's PID
-get_pid() {
-    run_systemctl show syncthing -P MainPID
-}
+# Get the Syncthing service's PID for internal script use
+PID=$(run_systemctl show syncthing -P MainPID)
 
-PID=$(get_pid)
+# Get the Syncthing service's PID for use as display value
+get_pid_display() {
+    if [[ "$PID" != "" && "$PID" -ne 0 ]]; then
+	echo "$PID"
+    else
+	echo "N/A"
+    fi
+}
 
 # Get Syncthing's service status
 get_status() {
