@@ -72,12 +72,61 @@ get_cpu() {
     fi
 }
 
+# Gets the configured sync folders' IDs
+get_sync_folder_ids() {
+    syncthing cli config folders list 2>/dev/null
+}
+
+# Gets the path using the folder ID
+get_sync_folder_path() {
+    syncthing cli config folders "$1" path get 2>/dev/null
+}
+
+# Expands tildes in the path to $HOME
+expand_path() {
+    sync_folder_path="$1"
+
+    sync_folder_path="${sync_folder_path/#\~/$HOME}"
+
+    echo "$sync_folder_path"
+}
+
+# Gets the size of a filesystem path
+get_folder_size() {
+    if [[ -d "$1" ]]; then
+	du -sh "$1" | cut -f1
+    else
+	echo "N/A"
+    fi
+}
+
+# Prints sync folders and their respective sizes
+print_sync_folders() {
+    folder_ids=$(get_sync_folder_ids)
+
+    # If no sync folders are configured, print "N/A" and stop
+    # execution
+    if [[ -z "$folder_ids" ]]; then
+	echo "N/A"
+	return
+    fi
+
+    for folder_id in $folder_ids; do
+	folder_path=$(get_sync_folder_path "$folder_id")
+	folder_path=$(expand_path "$folder_path")
+	size=$(get_folder_size "$folder_path")
+
+	printf "%-30s %s\n" "- $folder_path" "$size"
+    done
+}
+
 # ===== Printing starts here =====
 echo "=== Syncthing Status ==="
 echo
 echo "Service status: $(get_status)"
 echo "Service enabled: $(get_enabled)"
-#echo "Sync folder size: $(get_folder_size)"
 echo "PID: $(get_pid_display)"
 echo "Memory: $(get_memory)"
 echo "CPU: $(get_cpu)"
+echo "Sync folders:"
+print_sync_folders
