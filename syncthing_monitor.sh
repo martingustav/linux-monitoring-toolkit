@@ -13,6 +13,21 @@ get_service_scope() {
 
 SERVICE_SCOPE=$(get_service_scope)
 
+# Get Syncthing's runtime home path
+get_syncthing_home() {
+    if [[ "$SERVICE_SCOPE" == "system" ]]; then
+	systemctl show syncthing -p ExecStart --value 2>/dev/null \
+	    | grep -o -- '--home=[^ ]*' \
+	    | cut -d= -f2
+    elif [[ "$SERVICE_SCOPE" == "user" ]]; then
+	echo "$HOME/.local/state/syncthing"
+    else
+	return 1
+    fi
+}
+
+SYNCTHING_HOME=$(get_syncthing_home)
+
 # Helper function which runs systemctl with the correct service scope
 run_systemctl() {
     if [[ $SERVICE_SCOPE == "system" ]]; then
@@ -74,12 +89,12 @@ get_cpu() {
 
 # Gets the configured sync folders' IDs
 get_sync_folder_ids() {
-    syncthing cli config folders list 2>/dev/null
+    syncthing cli --home="$SYNCTHING_HOME" config folders list 2>/dev/null
 }
 
 # Gets the path using the folder ID
 get_sync_folder_path() {
-    syncthing cli config folders "$1" path get 2>/dev/null
+    syncthing cli --home="$SYNCTHING_HOME" config folders "$1" path get 2>/dev/null
 }
 
 # Expands tildes in the path to $HOME
