@@ -16,11 +16,11 @@ Current:
 - Display memory usage
 - Display disk usage
 - Display uptime
+- Service health monitoring
+- Syncthing monitoring
 
 Planned:
 
-- Service health monitoring
-- Syncthing monitoring
 - Log analysis
 - Alerting and threshold checks
 - Scheduled reporting with cron
@@ -55,6 +55,7 @@ Service enabled: enabled
 PID: 39096
 Memory: 2.2%
 CPU: 0.0%
+
 Sync folders:
 - /mnt/dietpi_userdata/syncthing/notes 1.2M
 ```
