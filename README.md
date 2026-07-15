@@ -29,6 +29,8 @@ Planned:
 
 ## Example Output
 
+`system_monitor.sh`:
+
 ```text
 === System Health Report ===
 
@@ -41,6 +43,20 @@ Disk usage: 16%
 Uptime: 12 days 1 hours 45 minutes
 
 Top memory process: syncthing (4.7%)
+```
+
+`syncthing_monitor.sh`:
+
+```text
+=== Syncthing Status ===
+
+Service status: active
+Service enabled: enabled
+PID: 39096
+Memory: 2.2%
+CPU: 0.0%
+Sync folders:
+- /mnt/dietpi_userdata/syncthing/notes 1.2M
 ```
 
 ## Learning Objectives
@@ -71,6 +87,7 @@ This project is intended to demonstrate and improve skills in:
 - [x] Check service status
 - [x] Monitor Syncthing
 - [x] Track resource consumption
+- [x] Detect Syncthing runtime user and home
 
 ### Phase 3 - Log Analysis
 
