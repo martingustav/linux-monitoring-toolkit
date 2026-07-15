@@ -143,5 +143,6 @@ echo "Service enabled: $(get_enabled)"
 echo "PID: $(get_pid_display)"
 echo "Memory: $(get_memory)"
 echo "CPU: $(get_cpu)"
+echo
 echo "Sync folders:"
 print_sync_folders
